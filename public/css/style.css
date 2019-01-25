@@ -1,0 +1,124 @@
+body{
+    background-color: #dfdddd;
+    overflow: hidden;
+}
+
+.options{
+    width: 300px;
+    margin: 50px auto; 
+}
+.panel{
+    height: 100vh !important;
+    width: 100vw !important;
+    opacity: 0.93;
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: fade-in 0.5s ease-in-out forwards;
+}
+
+.collection-header{
+    height: 40px !important;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.multiplayerbar{
+    opacity: 1;
+    width: 60%;
+    margin:20vh auto;
+    animation: dangle 1s cubic-bezier(0.68, -0.55, 0.265, 1.89) forwards;
+}
+.multiplayerbar li.collection-item{
+    cursor: pointer;
+    text-align: center;
+}
+
+.card-panel{
+    width: 40px !important;
+}
+
+#game-box{
+    width: 300px;
+    margin: 80px auto;
+    box-shadow: 2px  2px  2px 2px black;
+    margin-bottom: 0px !important; 
+}
+
+.btn:first-child{
+    margin-right: 40px !important;
+}
+
+.btn{
+    margin-top: 7px !important;
+    width: 88%;
+}
+
+.row{
+    display: flex;
+    margin: 0 !important;
+}
+
+.box{
+    padding: 30px;
+    height: 100px;
+    text-align: center;
+    width: 100px;
+    background: white;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: 200;
+}
+
+.box:active{
+    background: rgb(199, 87, 87); 
+}
+.one{
+    border-right: 2px solid hsl(0, 0%, 35%);
+    border-bottom: 2px solid hsl(0, 0%, 35%);
+}
+
+.two{
+    border-bottom: 2px solid hsl(0, 0%, 35%);
+}
+
+.five{
+    border-right: 2px solid hsl(0, 0%, 35%);
+}
+
+.three{
+    border-left: 2px solid hsl(0, 0%, 35%);
+    border-bottom: 2px solid hsl(0, 0%, 35%);
+}
+
+.last{
+    border-left: 2px solid hsl(0, 0%, 35%);
+}
+
+.loader{
+    margin-top: 20vw !important;
+}
+.big{
+    height:150px !important;
+    width:150px !important;
+}
+
+/* animations */
+@keyframes fade-in{
+    from{
+        opacity: 0
+    }
+    to{
+        opacity:0.9
+    }
+}
+
+@keyframes dangle{
+    from{
+        margin: -60vh auto;
+    }
+    to{
+        margin: 20vh auto;
+    }
+}

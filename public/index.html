@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>X and O</title>
+    <meta name="author" content="shuaibu alexander">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/materialize.min.1.css">
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <div class="nav-wrapper">
+                <ul class="left">
+                    <li v-show="gameStatus=='started'"><a href="#!" class="flow-text">Turn: {{modeOptions[mode]['turn']}}</a></li>
+                </ul>
+                <ul class="brand-logo left">
+                    <li v-show="gameStatus!='started'"><a href="#!" class="flow-text">{{headerInfo}}</a></li>
+                </ul>
+                <ul class="right">
+                    <li v-show="gameStatus!='notStarted'"><a href="#!" class="flow-text">{{modeOptions[mode]['opponent']}}:{{modeOptions[mode]['opponentScore']}}</a></li>
+                    <li v-show="gameStatus!='notStarted'"><a href="#!" class="flow-text">you({{playable[modeOptions[mode]['myId']-1]}}):{{userScore}}</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="game-box">
+            <div class="row">
+                <div @click="play(0)"  v-bind:class="{'green lighten-2 white-text':winningBox[0]==1,'red lighten-2 white-text':winningBox[0]==2}" class="flow-text box one">{{board[0]}}</div>
+                <div @click="play(1)"  v-bind:class="{'green lighten-2 white-text':winningBox[1]==1,'red lighten-2 white-text':winningBox[1]==2}" class="flow-text box two">{{board[1]}}</div>
+                <div @click="play(2)"  v-bind:class="{'green lighten-2 white-text':winningBox[2]==1,'red lighten-2 white-text':winningBox[2]==2}" class="flow-text box three">{{board[2]}}</div>
+            </div>
+            <div class="row">
+                <div @click="play(3)"  v-bind:class="{'green lighten-2 white-text':winningBox[3]==1,'red lighten-2 white-text':winningBox[3]==2}" class="flow-text box one">{{board[3]}}</div>
+                <div @click="play(4)"  v-bind:class="{'green lighten-2 white-text':winningBox[4]==1,'red lighten-2 white-text':winningBox[4]==2}" class="flow-text box two">{{board[4]}}</div>
+                <div @click="play(5)"  v-bind:class="{'green lighten-2 white-text':winningBox[5]==1,'red lighten-2 white-text':winningBox[5]==2}" class="flow-text box three">{{board[5]}}</div>
+            </div>
+            <div class="row">
+                <div @click="play(6)"  v-bind:class="{'green lighten-2 white-text':winningBox[6]==1,'red lighten-2 white-text':winningBox[6]==2}" class="flow-text box five">{{board[6]}}</div>
+                <div @click="play(7)"  v-bind:class="{'green lighten-2 white-text':winningBox[7]==1,'red lighten-2 white-text':winningBox[7]==2}" class="flow-text box">{{board[7]}}</div>
+                <div @click="play(8)"  v-bind:class="{'green lighten-2 white-text':winningBox[8]==1,'red lighten-2 white-text':winningBox[8]==2}" class="flow-text box last">{{board[8]}}</div>
+            </div>
+        </div>
+
+        <div class="options">
+                <div class="btn" v-show="gameStatus=='ended'" @click="restart()">Clear-board & continue</div>
+            <div class="btn red"  @click="start()">Single-player / reset</div>
+            <div class="btn" v-show="gameStatus!='started'" @click="multiplayerStart()">Multi-player</div>
+        </div>
+
+        <div class="panel"  @click="exitMulti()" v-show="openMultiplayerBar">
+            <div @click.stop class="multiplayerbar">
+                <ul v-show="!loading" class="collection">
+                    <li v-show="!multiplayerError" class="collection-header"><a>ONLINE PLAYERS</a></li>
+                    <li v-show="multiplayerError" class="collection-header"><a class="red-text flow-text">{{multiplayerError}}</a></li>
+                    <li v-for="(player,i) in onlinePlayers" :key="i" class="collection-item" @click="requestPlay({nickname:player.nickname,id:player.id})"><a class="red-text" href="#!">{{player.nickname}}</a></li>
+                    <li class="collection-item left"><a>Your nickname:{{nickname}}</a></li>
+                </ul>
+                
+                <div v-show="loading" class="center loader">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                            <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="./js/jquery-3.3.1.js"></script>
+<script src="./js/materialize.min.js"></script>
+<script src="./js/vue.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./js/script.js"></script>
+</html>
