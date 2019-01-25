@@ -54,7 +54,7 @@ const app=new Vue({
     mounted() {
         setTimeout(()=>{
         if(window.navigator.onLine){
-            this.nickname=prompt("please enter a nickname")||`user${Math.random().toFixed(4)}`
+            this.nickname=prompt("please enter a nickname for multiplayer")||`user${(Math.random()*50).toFixed(0)}`
 
             this.socket=io();
             this.socket.on('connect',e=>{
