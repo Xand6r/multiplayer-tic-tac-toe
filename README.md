@@ -9,4 +9,4 @@ the code for the intelligent agent can be found in `public/js/script.js`
 note: 'port' should be replaced by the port which the server is set to run on.
 
 ### playing the game
-it should be noted that there is a multiplayer mode too, implemented using vue.js and socket.io for real time playing between clients
+it should be noted that there is a multiplayer mode too, implemented using vue.js and socket.io for real time playing between two Players
