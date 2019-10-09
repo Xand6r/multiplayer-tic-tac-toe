@@ -1,5 +1,7 @@
 # multiplayer-tic-tac-toe
 A Vue.js and Node.js of an online multiplayer and single player of tic-tac-toe against an AI agent. it runs without internet as well with service workers.
+## The AI agent uses a policy that views the screen and is trained on every possible scenerios and the favourable output, it then predicts an output for every state of the board, when it is time for computer to play, the model predict based on what i have trained it with.
+
 the code for the intelligent agent can be found in `public/js/script.js`
 
 ### running and setting up the application
